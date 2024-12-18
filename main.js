@@ -11,12 +11,36 @@
 
 // слушатели событий, добавление объекта документа в переменную, находить объект, удалять эти объекты, менять объекты дом дерева, всплытие и погружение, методы
 
-const catalog = document.querySelector('#item__category--list--noactive');
+// всплытие - это процес, когда слушатель проходит по всем элементам которые являются родителями элемента на котором произошла прослушка
+// погружение - это процесс, который работает в обратном порядке
 
-const dropCatalog = () => {
-  catalog.innerHTML += `
-  <a href="https://t.me/@ananacik0">Link</a>
-  `;
+const catalog = document.querySelector('#item__category--list--noactive');
+// let newElement = catalog.innerHTML;
+// newElement = ``;
+
+const dropCatalog = (event) => {
+  if(event.target.id === 'item__category--list--noactive') {
+    event.target.id = 'item__category--list--active'
+    catalog.innerHTML += `
+    <li class="menu__item">
+      <a href="https://google.com">GoogleCom</a>
+    </li>
+    <li class="menu__item">
+      <a href="https://google.com">GoogleCom</a>
+    </li>
+    <li class="menu__item">
+      <a href="https://google.com">GoogleCom</a>
+    </li>
+    `;
+  } else {
+    event.target.id = 'item__category--list--noactive'
+    catalog.innerHTML = `
+        Каталог
+      <img class="category__arrow" src="image/arrow.svg" alt="arrow">
+      <ul class="open__menu">
+      </ul>
+    `;
+  };
 };
 
 
