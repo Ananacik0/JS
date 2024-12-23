@@ -129,7 +129,7 @@ a, a > span {
 }
 
 #item__category--list--active {
-  .category__arrow {
+  .category__arrow--drop {
     transform: rotate(180deg);
   }
 }
@@ -192,4 +192,17 @@ a, a > span {
   z-index: -1;
   bottom: -.5rem;
   left: -1rem;
+}
+
+#item__category--list--active {
+  position: relative;
+  .menu__catalog {
+    position: absolute;
+    background-color: #dedede;
+    top: 2.3rem;
+    right: -2rem;
+    a {
+      padding: 0.3rem 1rem;
+    }
+  }
 }

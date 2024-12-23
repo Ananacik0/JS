@@ -15,32 +15,50 @@
 // погружение - это процесс, который работает в обратном порядке
 
 const catalog = document.querySelector('#item__category--list--noactive');
-// let newElement = catalog.innerHTML;
-// newElement = ``;
+const menuList = document.querySelector('.menu__catalog');
+
 
 const dropCatalog = (event) => {
-  if(event.target.id === 'item__category--list--noactive') {
-    event.target.id = 'item__category--list--active'
-    catalog.innerHTML += `
-    <li class="menu__item">
-      <a href="https://google.com">GoogleCom</a>
-    </li>
-    <li class="menu__item">
-      <a href="https://google.com">GoogleCom</a>
-    </li>
-    <li class="menu__item">
-      <a href="https://google.com">GoogleCom</a>
-    </li>
-    `;
-  } else {
-    event.target.id = 'item__category--list--noactive'
-    catalog.innerHTML = `
-        Каталог
-      <img class="category__arrow" src="image/arrow.svg" alt="arrow">
-      <ul class="open__menu">
-      </ul>
-    `;
+  switch(true) {
+    case event.target.id === 'item__category--list--noactive' || event.target.className === 'category__arrow':
+      if(event.target.tagName === 'LI') {
+        event.target.id = 'item__category--list--active';
+        event.target.children[0].className = 'category__arrow--drop';
+        console.log(event)
+        render();
+      } else if(event.target.tagName === 'IMG') {
+        event.target.parentElement.id = 'item__category--list--active';
+        event.target.className = 'category__arrow--drop';
+        console.log(event)
+        render();
+      };
+      break;
+    case event.target.id === 'item__category--list--active' || event.target.className === 'category__arrow--drop':
+      if(event.target.tagName === 'LI') {
+        event.target.id = 'item__category--list--noactive';
+        event.target.children[0].className = 'category__arrow';
+        menuList.innerHTML = ``;
+      } else if(event.target.tagName === 'IMG') {
+        event.target.parentElement.id = 'item__category--list--noactive';
+        event.target.className = 'category__arrow'
+        menuList.innerHTML = ``;
+      };
+      
+      break;
+
+    default:
+      console.log('false')
   };
+};
+
+const render = () => {
+  let menu = ``;
+  menu += `
+  <a href="">Google.com</a>
+  <a href="">Google.com</a>
+  <a href="">Google.com</a>
+  `;
+  menuList.innerHTML = menu;
 };
 
 
